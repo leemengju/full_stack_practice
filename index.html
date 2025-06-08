@@ -9,25 +9,33 @@
 </head>
 
 <body>
-    <el-form :model="dataForm" ref="dataForm" label-width="100px" lable="dataForm">
-        <el-select v-model="input.type" placeholder="請選擇" lable:"台北">
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-        <el-form-item label="地區">
-            <el-input v-model="input.title"></el-input>
-        </el-form-item>
-        <el-form-item label="連結">
-            <el-input v-model="input.link"></el-input>
-        </el-form-item>
-        <el-button type="primary" @keyup.enter="inputHandle">新增</el-button>
-        <el-button type="primary" @click="handleSubmit">提交</el-button>
-    </el-form>
+    <div id="app">
+        <e-select v-model="input.type" placeholder="請選擇" lable:"台北">
+            <option :value="null">請選擇</option>
+            <option v-for="item in typeList.sort">{{item}}</option>
+        </e-select>
 
+        <el-form :model="dataForm" ref="dataForm" label-width="100px" lable="dataForm">
+            <el-select v-model="input.type" placeholder="請選擇" lable:"台北">
+                <el-option v-for="item in options" :key="item.value" :label="item.label"
+                    :value="item.value"></el-option>
+            </el-select>
+            <el-form-item label="地區">
+                <el-input v-model="input.title"></el-input>
+            </el-form-item>
+            <el-form-item label="連結">
+                <el-input v-model="input.link"></el-input>
+            </el-form-item>
+            <el-button type="primary" @keyup.enter="inputHandle">新增</el-button>
+            <el-button type="primary" @click="handleSubmit">提交</el-button>
+        </el-form>
+    </div>
 </body>
 
 <!-- 引用vue -->
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
+    import day8_扁平資料階級化 from "./day8_扁平資料階級化.js"
     let data = {
         input: {
             type: "",
