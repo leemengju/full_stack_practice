@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+</body>
+<!-- 引用vue -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        },
+        computed: {
+// 把ㄅㄧㄢ舉例說明:
+// // [
+//   { type: '產品', title: '手機', link: '/phones' },
+//   { type: '產品', title: '筆電', link: '/laptops' },
+//   { type: '服務', title: '維修', link: '/repair' }
+// ]
+
+// {
+//   sort: ['產品', '服務'], // 第一層分類的順序
+//   map: {
+//     '產品': {
+//       sort: ['手機', '筆電'],       // 該分類下的項目順序
+//       map: { 
+//         '手機': { index: 0, link: '/phones' },
+//         '筆電': { index: 1, link: '/laptops' }
+//       }
+//     },
+//     '服務': {
+//       sort: ['維修'],
+//       map: {
+//         '維修': { index: 2, link: '/repair' }
+//       }
+//         }
+//     }
+// }
+// }
+
+
+            typeList() {
+                let obj = {
+                    sort: [],
+                    // map裡面會放type、title、link內容。
+                    map: {},
+                }
+                this.menu.forEach(({ type, title, link }, index) => {
+                    if (!obj.map[type]) {
+                        obj.sort.push(type);
+                        obj.map[type] = {
+                            // 之前都沒有出現過這種類型，所以要先初始化
+                            sort: [],
+                            map: {}
+
+                        };
+                    }
+                    obj.map[type].sort.push( title )
+                    obj.map[type].map[title]={index,link}
+                });
+                return obj;
+            },// end of  typeList
+        },// end of computed
+
+    });// end of vue
+
+
+
+
+
+</script>
+
+</html>
