@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+    <div id="app">
+       <div class="box">
+        <div @click="obj.num++">{{obj.num}}</div>
+        <div @click=objectListHandler>{{objList[0].num}}</div>
+        <div @click="number++">{{number}}</div>
+        <div @click=numberListHandler>{{numberList[0]}}</div>
+       </div>
+    </div>
+</body>
+
+<!-- 引用vue -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    
+    let data = {
+        obj: {
+            num:0,
+        },
+        objList:[
+            {num:0},
+            {num:0},
+        ],
+        number:0,
+        numberList:[
+            0, 0, 0,
+        ],
+    }
+    let vm = new Vue({
+        el: "#app",
+        data: "data",
+
+        methods: {
+            objectListHandler(){
+                this.objList[0].num++
+            },
+            numberListHandler(){
+                this.numberList[0]++
+            }
+           
+        },
+        watch:{
+            number(val,oldVal){
+                console.log("number:", val,oldVal)
+            },
+            ["obj.num"](val,oldVal){
+                console.log("obj:", val,oldVal)
+            },
+            obj:{
+                handler(val,oldVal){
+                    console.log("obj:", val,oldVal)
+                },
+                deep:true,
+                // 整包參數都會一起觀察。觀測物件只會拿到當下的狀態。
+                immediate:true,
+            }
+        }
+    })
+
+</script>
+
+</html>
