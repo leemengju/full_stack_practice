@@ -1,0 +1,16 @@
+{
+    "contracts": [
+        {
+            "id": 1,
+            "name": "Contract 1",
+            "email": "email1@gmail.com",
+            "status": "active"
+        },
+        {
+            "id": 2,
+            "name": "Contract 2",
+            "email": "email2@gmail.com",
+            "status": "inactive"
+        }
+    ]
+}
